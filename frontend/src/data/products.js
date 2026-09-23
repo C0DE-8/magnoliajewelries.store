@@ -1,13 +1,119 @@
 export const products = [
-  { id: 1, slug: 'solstice-gold-hoops', name: 'Solstice Gold Hoops', category: 'Earrings', price: 85, image: 'earrings', material: '18k gold vermeil', tag: 'BESTSELLER', description: 'Your everyday golden hour. Sculptural, softly rounded hoops that bring just the right amount of light to every look.', sizes: ['One size'] },
-  { id: 2, slug: 'petal-pendant-necklace', name: 'Petal Pendant Necklace', category: 'Necklaces', price: 120, image: 'necklace', material: '18k gold vermeil', tag: 'MOST LOVED', description: 'A little poetry, close to your heart. A delicate pendant on a fine golden chain, made for layering or letting it shine on its own.', sizes: ['16 inches', '18 inches', '20 inches'] },
-  { id: 3, slug: 'eternal-gold-ring', name: 'Eternal Gold Ring', category: 'Rings', price: 95, image: 'ring', material: 'Gold-plated sterling silver', tag: '', description: 'Simple lines. Endless possibilities. A beautifully polished ring with a timeless silhouette that feels entirely your own.', sizes: ['UK J', 'UK L', 'UK N', 'UK P', 'UK R'] },
-  { id: 4, slug: 'luna-pearl-bracelet', name: 'Luna Pearl Bracelet', category: 'Bracelets', price: 110, image: 'bracelet', material: 'Freshwater pearls & gold vermeil', tag: 'NEW', description: 'Naturally luminous freshwater pearls meet a touch of gold. An effortless companion for slow mornings and special evenings.', sizes: ['Small / Medium', 'Medium / Large'] },
-  { id: 5, slug: 'muse-drop-earrings', name: 'Muse Drop Earrings', category: 'Earrings', price: 105, image: 'earrings', material: '18k gold vermeil', tag: 'NEW', description: 'A graceful golden detail with a sculptural finish. Lightweight and quietly expressive, from the first coffee to the last dance.', sizes: ['One size'] },
-  { id: 6, slug: 'golden-hour-chain', name: 'Golden Hour Chain', category: 'Necklaces', price: 135, image: 'necklace', material: '18k gold vermeil', tag: '', description: 'Meet the foundation of your necklace collection. Warm gold, an adjustable length, and endless ways to make it yours.', sizes: ['16 inches', '18 inches', '20 inches'] },
-  { id: 7, slug: 'flora-stacking-ring', name: 'Flora Stacking Ring', category: 'Rings', price: 65, image: 'ring', material: 'Gold-plated sterling silver', tag: '', description: 'A fine golden band for all your little milestones. Wear one for simplicity or stack a few to tell your story.', sizes: ['UK J', 'UK L', 'UK N', 'UK P', 'UK R'] },
-  { id: 8, slug: 'sunday-pearl-bracelet', name: 'Sunday Pearl Bracelet', category: 'Bracelets', price: 90, image: 'bracelet', material: 'Freshwater pearls & sterling silver', tag: '', description: 'Easy, understated, and full of natural character. An ode to the days when you have nowhere to be but yourself.', sizes: ['Small / Medium', 'Medium / Large'] },
-]
-export const money = value => new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 }).format(value)
-export const categories = ['All jewelry', 'Necklaces', 'Earrings', 'Rings', 'Bracelets']
-
+  {
+    id: 1,
+    slug: "solstice-gold-hoops",
+    name: "Solstice Gold Hoops",
+    category: "Earrings",
+    price: 85,
+    image: "earrings",
+    material: "18k gold vermeil",
+    tag: "BESTSELLER",
+    description:
+      "Your everyday golden hour. Sculptural, softly rounded hoops that bring just the right amount of light to every look.",
+    sizes: ["One size"],
+  },
+  {
+    id: 2,
+    slug: "petal-pendant-necklace",
+    name: "Petal Pendant Necklace",
+    category: "Necklaces",
+    price: 120,
+    image: "necklace",
+    material: "18k gold vermeil",
+    tag: "MOST LOVED",
+    description:
+      "A little poetry, close to your heart. A delicate pendant on a fine golden chain, made for layering or letting it shine on its own.",
+    sizes: ["16 inches", "18 inches", "20 inches"],
+  },
+  {
+    id: 3,
+    slug: "eternal-gold-ring",
+    name: "Eternal Gold Ring",
+    category: "Rings",
+    price: 95,
+    image: "ring",
+    material: "Gold-plated sterling silver",
+    tag: "",
+    description:
+      "Simple lines. Endless possibilities. A beautifully polished ring with a timeless silhouette that feels entirely your own.",
+    sizes: ["UK J", "UK L", "UK N", "UK P", "UK R"],
+  },
+  {
+    id: 4,
+    slug: "luna-crystal-bracelet",
+    name: "Luna Crystal Bracelet",
+    category: "Bracelets",
+    price: 110,
+    image: "bracelet",
+    material: "Crystal & gold-plated brass",
+    tag: "NEW",
+    description:
+      "Luminous crystals meet a touch of gold. An effortless companion for slow mornings and special evenings.",
+    sizes: ["Small / Medium", "Medium / Large"],
+  },
+  {
+    id: 5,
+    slug: "muse-drop-earrings",
+    name: "Muse Drop Earrings",
+    category: "Earrings",
+    price: 105,
+    image: "earrings",
+    material: "18k gold vermeil",
+    tag: "NEW",
+    description:
+      "A graceful golden detail with a sculptural finish. Lightweight and quietly expressive, from the first coffee to the last dance.",
+    sizes: ["One size"],
+  },
+  {
+    id: 6,
+    slug: "golden-hour-chain",
+    name: "Golden Hour Chain",
+    category: "Necklaces",
+    price: 135,
+    image: "necklace",
+    material: "18k gold vermeil",
+    tag: "",
+    description:
+      "Meet the foundation of your necklace collection. Warm gold, an adjustable length, and endless ways to make it yours.",
+    sizes: ["16 inches", "18 inches", "20 inches"],
+  },
+  {
+    id: 7,
+    slug: "flora-stacking-ring",
+    name: "Flora Stacking Ring",
+    category: "Rings",
+    price: 65,
+    image: "ring",
+    material: "Gold-plated sterling silver",
+    tag: "",
+    description:
+      "A fine golden band for all your little milestones. Wear one for simplicity or stack a few to tell your story.",
+    sizes: ["UK J", "UK L", "UK N", "UK P", "UK R"],
+  },
+  {
+    id: 8,
+    slug: "sunday-crystal-bracelet",
+    name: "Sunday Crystal Bracelet",
+    category: "Bracelets",
+    price: 90,
+    image: "bracelet",
+    material: "Crystal & gold-plated brass",
+    tag: "",
+    description:
+      "Easy, expressive, and full of character. An ode to the days when you have nowhere to be but yourself.",
+    sizes: ["Small / Medium", "Medium / Large"],
+  },
+];
+export const money = (value) =>
+  new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+    maximumFractionDigits: 0,
+  }).format(value);
+export const categories = [
+  "All jewelry",
+  "Necklaces",
+  "Earrings",
+  "Rings",
+  "Bracelets",
+];

@@ -1,18 +1,227 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FiArrowRight, FiArrowUpRight, FiGift, FiTruck, FiHeart, FiSun } from 'react-icons/fi'
-import ProductCard from '../../components/ProductCard'
-import SEO from '../../components/SEO'
-import { products } from '../../data/products'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  FiArrowRight,
+  FiArrowUpRight,
+  FiGift,
+  FiTruck,
+  FiHeart,
+  FiSun,
+} from "react-icons/fi";
+import ProductCard from "../../components/ProductCard";
+import SEO from "../../components/SEO";
+import { products } from "../../data/products";
 export default function Home() {
-  const [subscribed, setSubscribed] = useState(false)
-  return <><SEO /><section className="hero"><img className="hero-image" src="/images/hero.jpg" alt="Delicate golden jewelry, thoughtfully styled in warm natural light" fetchPriority="high" /><div className="hero-shade" /><div className="hero-content container"><span className="eyebrow">NOT JUST JEWELRY. A LITTLE PIECE OF YOU.</span><h1>For your everyday.<br />And your <em>forever.</em></h1><p>Meaningful pieces. Effortless beauty.<br />Meet the jewelry that becomes part of your story.</p><Link className="button button-cream" to="/shop">Find your forever piece <FiArrowRight /></Link><div className="hero-caption"><span className="small-flower">✳</span> A little luxury. A lot of you.</div></div><div className="hero-index"><span>01</span><i /><span>THE EVERYDAY EDIT</span></div></section>
-    <div className="benefits"><span><FiTruck /> Complimentary delivery £100+</span><span><FiGift /> Beautifully gift-wrapped</span><span><FiSun /> Made for everyday moments</span><span><FiHeart /> A little love in every detail</span></div>
-    <section className="section container category-section"><div className="section-heading"><div><span className="eyebrow">YOUR NEXT LITTLE OBSESSION</span><h2>A piece for every part of you.</h2></div><Link className="text-link" to="/shop">Explore all jewelry <FiArrowUpRight /></Link></div><div className="category-grid">{[{ name: 'Necklaces', image: 'necklace', caption: 'Close to your heart' }, { name: 'Earrings', image: 'earrings', caption: 'Your finishing touch' }, { name: 'Rings', image: 'ring', caption: 'Little circles of love' }, { name: 'Bracelets', image: 'bracelet', caption: 'Always by your side' }].map(item => <Link to={'/shop?category=' + item.name} className="category-card" key={item.name}><div className="category-image"><img src={'/images/' + item.image + '.jpg'} alt={item.name + ' collection'} loading="lazy" /><span><FiArrowUpRight /></span></div><h3>{item.name}</h3><p>{item.caption}</p></Link>)}</div></section>
-    <section className="bestsellers section"><div className="container"><div className="section-heading"><div><span className="eyebrow">LOVED, WORN, REPEATED</span><h2>Your favorites. For a reason.</h2></div><Link className="text-link" to="/shop?collection=bestsellers">Shop bestsellers <FiArrowUpRight /></Link></div><div className="product-grid">{products.slice(0, 4).map(product => <ProductCard product={product} key={product.id} />)}</div></div></section>
-    <section className="story-section container"><div className="story-image"><img src="/images/story.jpg" alt="A personal collection of timeless golden jewelry" loading="lazy" /><span className="image-note">Made to mean something.</span></div><div className="story-copy"><span className="flower-mark">✳</span><span className="eyebrow">A LITTLE ABOUT MAGNOLIA</span><h2>Some things just<br /><em>stay with you.</em></h2><p>The necklace you never take off. The ring that marks a new chapter. The earrings that make an ordinary Tuesday feel a little more special.</p><p>We believe the best jewelry isn’t saved for a special occasion. It’s part of who you are. Considered, beautiful pieces to collect memories in.</p><Link className="text-link" to="/about">Get to know us <FiArrowUpRight /></Link></div></section>
-    <section className="quote-section"><span className="eyebrow">THE LITTLE THINGS ARE THE BIG THINGS</span><p>“Jewelry has a way of holding a moment.<br />Make room for the ones that matter.”</p><span className="quote-signature">with love, magnolia</span></section>
-    <section className="newsletter container"><div><span className="eyebrow">LET’S MAKE THIS A LITTLE MORE PERSONAL</span><h2>A little sparkle in your inbox.</h2><p>New pieces, thoughtful stories, and first access to our little world.</p></div><div>{subscribed ? <p className="newsletter-success" role="status">You’re on the demo list. A little sparkle is coming your way.<small>This preview doesn’t send emails or save your address.</small></p> : <form onSubmit={e => { e.preventDefault(); setSubscribed(true) }}><label className="sr-only" htmlFor="newsletter-email">Email address</label><input id="newsletter-email" type="email" placeholder="Your email address" required /><button aria-label="Join the newsletter"><FiArrowRight /></button></form>}<small>By joining, you agree to our <Link to="/information/privacy">privacy policy</Link>. Just the good things, we promise.</small></div></section>
-  </>
+  const [subscribed, setSubscribed] = useState(false);
+  return (
+    <>
+      <SEO />
+      <section className="hero">
+        <img
+          className="hero-image"
+          src="/images/hero.jpg"
+          alt="Delicate golden jewelry, thoughtfully styled in warm natural light"
+          fetchPriority="high"
+        />
+        <div className="hero-shade" />
+        <div className="hero-content container">
+          <span className="eyebrow">
+            NOT JUST JEWELRY. A LITTLE PIECE OF YOU.
+          </span>
+          <h1>
+            For your everyday.
+            <br />
+            And your <em>forever.</em>
+          </h1>
+          <p>
+            Meaningful pieces. Effortless beauty.
+            <br />
+            Meet the jewelry that becomes part of your story.
+          </p>
+          <Link className="button button-cream" to="/shop">
+            Find your forever piece <FiArrowRight />
+          </Link>
+          <div className="hero-caption">
+            <span className="small-flower">✳</span> A little luxury. A lot of
+            you.
+          </div>
+        </div>
+        <div className="hero-index">
+          <span>01</span>
+          <i />
+          <span>THE EVERYDAY EDIT</span>
+        </div>
+      </section>
+      <div className="benefits">
+        <span>
+          <FiTruck /> Complimentary delivery £100+
+        </span>
+        <span>
+          <FiGift /> Beautifully gift-wrapped
+        </span>
+        <span>
+          <FiSun /> Made for everyday moments
+        </span>
+        <span>
+          <FiHeart /> A little love in every detail
+        </span>
+      </div>
+      <section className="section container category-section">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">YOUR NEXT LITTLE OBSESSION</span>
+            <h2>A piece for every part of you.</h2>
+          </div>
+          <Link className="text-link" to="/shop">
+            Explore all jewelry <FiArrowUpRight />
+          </Link>
+        </div>
+        <div className="category-grid">
+          {[
+            {
+              name: "Necklaces",
+              image: "necklace",
+              caption: "Close to your heart",
+            },
+            {
+              name: "Earrings",
+              image: "earrings",
+              caption: "Your finishing touch",
+            },
+            { name: "Rings", image: "ring", caption: "Little circles of love" },
+            {
+              name: "Bracelets",
+              image: "bracelet",
+              caption: "Always by your side",
+            },
+          ].map((item) => (
+            <Link
+              to={"/shop?category=" + item.name}
+              className="category-card"
+              key={item.name}
+            >
+              <div className="category-image">
+                <img
+                  src={"/images/" + item.image + ".jpg"}
+                  alt={item.name + " collection"}
+                  loading="lazy"
+                />
+                <span>
+                  <FiArrowUpRight />
+                </span>
+              </div>
+              <h3>{item.name}</h3>
+              <p>{item.caption}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section className="bestsellers section">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">LOVED, WORN, REPEATED</span>
+              <h2>Your favorites. For a reason.</h2>
+            </div>
+            <Link className="text-link" to="/shop?collection=bestsellers">
+              Shop bestsellers <FiArrowUpRight />
+            </Link>
+          </div>
+          <div className="product-grid">
+            {products.slice(0, 4).map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="story-section container">
+        <div className="story-image">
+          <img
+            src="/images/story.jpg"
+            alt="A personal collection of timeless golden jewelry"
+            loading="lazy"
+          />
+          <span className="image-note">Made to mean something.</span>
+        </div>
+        <div className="story-copy">
+          <span className="flower-mark">✳</span>
+          <span className="eyebrow">A LITTLE ABOUT MAGNOLIA</span>
+          <h2>
+            Some things just
+            <br />
+            <em>stay with you.</em>
+          </h2>
+          <p>
+            The necklace you never take off. The ring that marks a new chapter.
+            The earrings that make an ordinary Tuesday feel a little more
+            special.
+          </p>
+          <p>
+            We believe the best jewelry isn’t saved for a special occasion. It’s
+            part of who you are. Considered, beautiful pieces to collect
+            memories in.
+          </p>
+          <Link className="text-link" to="/about">
+            Get to know us <FiArrowUpRight />
+          </Link>
+        </div>
+      </section>
+      <section className="quote-section">
+        <span className="eyebrow">THE LITTLE THINGS ARE THE BIG THINGS</span>
+        <p>
+          “Jewelry has a way of holding a moment.
+          <br />
+          Make room for the ones that matter.”
+        </p>
+        <span className="quote-signature">with love, magnolia</span>
+      </section>
+      <section className="newsletter container">
+        <div>
+          <span className="eyebrow">
+            LET’S MAKE THIS A LITTLE MORE PERSONAL
+          </span>
+          <h2>A little sparkle in your inbox.</h2>
+          <p>
+            New pieces, thoughtful stories, and first access to our little
+            world.
+          </p>
+        </div>
+        <div>
+          {subscribed ? (
+            <p className="newsletter-success" role="status">
+              You’re on the demo list. A little sparkle is coming your way.
+              <small>
+                This preview doesn’t send emails or save your address.
+              </small>
+            </p>
+          ) : (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSubscribed(true);
+              }}
+            >
+              <label className="sr-only" htmlFor="newsletter-email">
+                Email address
+              </label>
+              <input
+                id="newsletter-email"
+                type="email"
+                placeholder="Your email address"
+                required
+              />
+              <button aria-label="Join the newsletter">
+                <FiArrowRight />
+              </button>
+            </form>
+          )}
+          <small>
+            By joining, you agree to our{" "}
+            <Link to="/information/privacy">privacy policy</Link>. Just the good
+            things, we promise.
+          </small>
+        </div>
+      </section>
+    </>
+  );
 }
-
