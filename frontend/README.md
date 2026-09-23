@@ -1,19 +1,50 @@
-# React + Vite
+# Magnolia Jewelries
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React storefront with a warm ivory, burgundy, and gold visual identity.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Use Node.js 22.16+ (or a supported newer release).
 
-## React Compiler
+```sh
+npm install
+npm run dev
+```
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Project structure
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+- `src/pages/`: Home, Shop, Product, Wishlist, Bag, About, Information, and NotFound, each in its own folder.
+- `src/components/`: reusable Header, Footer, ProductCard, and SEO.
+- `src/context/ShopContext.jsx`: persistent favorites and shopping bag.
+- `src/data/products.js`: eight editable demo products, prices, images, and sizes.
+- `src/index.css`: design tokens, layouts, and mobile styles.
+- `public/images/`: locally stored demo photography and social preview.
+- `scripts/generate-pages.mjs`: builds route-specific social metadata, sitemap, and robots.txt.
+- `tests/storefront.spec.js`: browser tests for shopping interactions and sharing metadata.
 
-## Expanding the ESLint configuration
+React Router DOM handles navigation. React Icons supplies interface icons. Favorites and bag contents are saved in localStorage, with an in-memory fallback.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Check and build
+
+```sh
+npm run lint
+npm run build
+npm run test:e2e
+npm run preview
+```
+
+Browser tests use installed Google Chrome. Run the build before tests. Tests cover image loading, search, filters, sorting, wishlist persistence, bag quantities and totals, mobile navigation, product metadata, the not-found page, and newsletter feedback.
+
+## Deployment and link previews
+
+Deploy the complete `dist` directory. The build generates 19 HTML entry documents, including one per product. Their Open Graph and Twitter metadata is present in the initial HTML so social crawlers can read each product's title, description, and image without executing JavaScript.
+
+The default public origin is `https://magnoliajewelries.store`. Set the `SITE_URL` environment variable before building if deploying elsewhere. Images must be publicly reachable for sharing previews.
+
+Serve existing route directories before the SPA fallback. Netlify's `public/_redirects` and the Vercel filesystem-first routes are included. On other hosts, serve the requested route's `index.html` if present, then fall back to the root `index.html` for unknown routes. Use `frontend` as the project root, `npm run build` as the build command, and `dist` as the output directory.
+
+## Demo boundaries
+
+Product names, prices, materials, photography, and delivery costs are illustrative. Replace them with your actual catalog before launch. Payments, orders, newsletter delivery, customer support, and inventory are not connected. Checkout and newsletter interactions explain their demo status; neither collects payment nor sends email.
+
+Fonts load from Google Fonts. Photo source identifiers are in `public/images/credits.txt`. Replace the placeholder delivery, privacy, terms, and contact copy with your business's approved information before opening the shop.
