@@ -3,9 +3,17 @@ export default function SEO({
   title = "Jewelry for your everyday, and your forever",
   description = "Discover Magnolia Jewelries. Thoughtful gold pieces, luminous pearls, and little treasures for your everyday. Find a piece of yourself.",
   image = "/images/social-cover.jpg",
+  noIndex = false,
 }) {
   useEffect(() => {
     document.title = title + " | Magnolia Jewelries";
+    let robots = document.querySelector('meta[name="robots"]');
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.name = "robots";
+      document.head.appendChild(robots);
+    }
+    robots.content = noIndex ? "noindex,nofollow" : "index,follow";
     const values = {
       description,
       "og:title": document.title,
@@ -29,6 +37,6 @@ export default function SEO({
     document
       .querySelector('link[rel="canonical"]')
       ?.setAttribute("href", window.location.origin + window.location.pathname);
-  }, [title, description, image]);
+  }, [title, description, image, noIndex]);
   return null;
 }

@@ -20,6 +20,7 @@ export default function Footer() {
           <Link to="/shop?collection=new">New arrivals</Link>
           <Link to="/shop?collection=gifts">The gift edit</Link>
           <Link to="/about">Our story</Link>
+          <Link to="/journal">The Magnolia journal</Link>
         </div>
         <div>
           <h3>Here to help</h3>

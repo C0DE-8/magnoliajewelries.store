@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   FiMinus,
@@ -10,9 +10,11 @@ import {
 import { ShopContext } from "../../context/ShopContext";
 import { products, money } from "../../data/products";
 import SEO from "../../components/SEO";
+import { InvoiceContext } from "../../context/InvoiceContext";
+import { totalsFor } from "../../data/store";
 export default function Bag() {
   const { bag, updateQuantity } = useContext(ShopContext);
-  const [checkout, setCheckout] = useState(false);
+  const { invoices } = useContext(InvoiceContext);
   const items = bag
     .map((item) => ({
       ...item,
@@ -23,10 +25,12 @@ export default function Bag() {
     (sum, item) => sum + item.product.price * item.quantity,
     0,
   );
-  const delivery = total >= 100 ? 0 : 5;
+  const { delivery } = totalsFor(
+    items.map((item) => ({ ...item, price: item.product.price })),
+  );
   return (
     <>
-      <SEO title="Your shopping bag" />
+      <SEO title="Your shopping bag" noIndex />
       <div className="page-intro">
         <span className="eyebrow">SOMETHING LOVELY IS WAITING</span>
         <h1>Your little treasures.</h1>
@@ -115,14 +119,17 @@ export default function Bag() {
                 <span>Total</span>
                 <span>{money(total + delivery)}</span>
               </div>
-              <button className="button" onClick={() => setCheckout(true)}>
+              <Link className="button" to="/checkout">
                 Continue to checkout <FiArrowRight />
-              </button>
-              {checkout && (
-                <p role="status" className="checkout-notice">
-                  This is a demo storefront. Your bag is saved on this device,
-                  but payments and orders aren’t connected yet.
-                </p>
+              </Link>
+              <p className="field-note">
+                Create an invoice, then contact Magnolia to arrange payment
+                outside the website.
+              </p>
+              {invoices[0] && (
+                <Link className="text-link" to={"/invoice/" + invoices[0].id}>
+                  View your latest invoice
+                </Link>
               )}
               <small>Beautifully wrapped, with love.</small>
             </aside>

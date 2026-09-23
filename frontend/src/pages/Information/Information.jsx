@@ -5,7 +5,7 @@ const information = {
   delivery: {
     title: "Delivery & returns",
     paragraphs: [
-      "This storefront is a preview of Magnolia Jewelries. Orders and payments are not available yet.",
+      "This storefront is a preview of Magnolia Jewelries. You can create an order request invoice and contact Magnolia to confirm availability and arrange payment outside the website. An invoice is not a confirmed order.",
       "The demo bag shows complimentary delivery for orders of £100 or more, and £5 delivery below £100. Final delivery locations, timelines, and return terms will be confirmed before the store opens.",
     ],
   },
@@ -29,14 +29,14 @@ const information = {
     title: "A little hello.",
     paragraphs: [
       "We’re getting our little world ready for you. Customer support details will be published here when Magnolia opens.",
-      "For now, explore the collection, create a wish list, and get to know our story. This is a demonstration store, so no purchases or messages are processed.",
+      "For now, explore the collection, create a wish list, and get to know our story. Choose a preferred payment method at checkout, then use your invoice reference when contacting Magnolia. Contact links appear on your invoice once the store owner supplies their details. No messages are sent automatically.",
     ],
   },
   privacy: {
     title: "Your privacy matters.",
     paragraphs: [
       "This demo stores your saved pieces and shopping bag in your browser’s local storage. You can remove individual pieces or clear your browser’s site data to delete them.",
-      "The newsletter preview does not transmit or store your email address. No checkout or payment information is collected.",
+      "The newsletter preview does not transmit or store your email address. Checkout details are stored only in sessionStorage in the current browser tab to generate your invoice. They are not submitted to Magnolia automatically. You can remove an invoice on its page. Closing the tab may remove it. Using a contact link shares the displayed request through your chosen email or messaging service. No card details are collected.",
       "Fonts are loaded from Google Fonts, which receives standard connection information when your browser requests them. Product images are served from this site. A complete privacy policy will be published before commercial launch.",
     ],
   },
@@ -44,7 +44,7 @@ const information = {
     title: "A few thoughtful details.",
     paragraphs: [
       "Magnolia Jewelries is currently a demonstration storefront. Product names, materials, prices, and availability are sample content. Images are illustrative and may not match final products.",
-      "No orders are accepted and no payments are collected. Delivery prices are displayed for demonstration only.",
+      "Creating an invoice records your selections in this browser tab only. It does not submit an order, reserve stock, or confirm payment. You must contact Magnolia to confirm final pricing, delivery, and payment instructions. Delivery prices are displayed for demonstration only.",
       "Full purchase terms, company details, and customer policies will be available before the store launches.",
     ],
   },

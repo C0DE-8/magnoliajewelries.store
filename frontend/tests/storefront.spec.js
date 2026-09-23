@@ -6,6 +6,7 @@ test("homepage loads all jewelry photography and navigation", async ({
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
+  await page.getByRole("button", { name: "Pause slideshow" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "For your everyday.",
   );
@@ -20,14 +21,14 @@ test("homepage loads all jewelry photography and navigation", async ({
     )
     .toBe(true);
   await page.getByRole("link", { name: "Find your forever piece" }).click();
-  await expect(page.locator(".product-card")).toHaveCount(8);
+  await expect(page.locator(".product-card")).toHaveCount(12);
   expect(errors).toEqual([]);
 });
 
 test("filtering, searching, and sorting work", async ({ page }) => {
   await page.goto("/shop");
   await page.getByRole("button", { name: "Rings", exact: true }).click();
-  await expect(page.locator(".product-card")).toHaveCount(2);
+  await expect(page.locator(".product-card")).toHaveCount(3);
   await page.getByLabel("Sort products").selectOption("price-low");
   await expect(page.locator(".product-card").first()).toContainText(
     "Flora Stacking Ring",
@@ -39,7 +40,7 @@ test("filtering, searching, and sorting work", async ({ page }) => {
   await page.goto("/shop?q=does-not-exist");
   await expect(page.getByText("No pieces found just yet.")).toBeVisible();
   await page.getByRole("button", { name: "Explore all jewelry" }).click();
-  await expect(page.locator(".product-card")).toHaveCount(8);
+  await expect(page.locator(".product-card")).toHaveCount(12);
 });
 
 test("wishlist persists and can remove pieces", async ({ page }) => {
@@ -72,8 +73,11 @@ test("bag keeps sizes, quantities, totals, and demo checkout", async ({
   await expect(page.locator(".order-total")).toContainText("£190");
   await page.reload();
   await expect(page.locator(".quantity span")).toHaveText("2");
-  await page.getByRole("button", { name: "Continue to checkout" }).click();
-  await expect(page.getByRole("status")).toContainText("demo storefront");
+  await page.getByRole("link", { name: "Continue to checkout" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Make it yours." }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Back to your bag" }).click();
   await page.getByRole("button", { name: "Remove Eternal Gold Ring" }).click();
   await expect(
     page.getByText("Your bag is waiting for a little sparkle."),

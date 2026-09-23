@@ -10,48 +10,15 @@ import {
 } from "react-icons/fi";
 import ProductCard from "../../components/ProductCard";
 import SEO from "../../components/SEO";
+import HeroSlider from "../../components/HeroSlider";
+import HomeExtras from "../../components/HomeExtras";
 import { products } from "../../data/products";
 export default function Home() {
   const [subscribed, setSubscribed] = useState(false);
   return (
     <>
       <SEO />
-      <section className="hero">
-        <img
-          className="hero-image"
-          src="/images/hero.jpg"
-          alt="Delicate golden jewelry, thoughtfully styled in warm natural light"
-          fetchPriority="high"
-        />
-        <div className="hero-shade" />
-        <div className="hero-content container">
-          <span className="eyebrow">
-            NOT JUST JEWELRY. A LITTLE PIECE OF YOU.
-          </span>
-          <h1>
-            For your everyday.
-            <br />
-            And your <em>forever.</em>
-          </h1>
-          <p>
-            Meaningful pieces. Effortless beauty.
-            <br />
-            Meet the jewelry that becomes part of your story.
-          </p>
-          <Link className="button button-cream" to="/shop">
-            Find your forever piece <FiArrowRight />
-          </Link>
-          <div className="hero-caption">
-            <span className="small-flower">✳</span> A little luxury. A lot of
-            you.
-          </div>
-        </div>
-        <div className="hero-index">
-          <span>01</span>
-          <i />
-          <span>THE EVERYDAY EDIT</span>
-        </div>
-      </section>
+      <HeroSlider />
       <div className="benefits">
         <span>
           <FiTruck /> Complimentary delivery £100+
@@ -175,6 +142,7 @@ export default function Home() {
         </p>
         <span className="quote-signature">with love, magnolia</span>
       </section>
+      <HomeExtras />
       <section className="newsletter container">
         <div>
           <span className="eyebrow">

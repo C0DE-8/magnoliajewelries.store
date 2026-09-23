@@ -20,6 +20,7 @@ export default function Shop() {
     .filter(
       (p) =>
         (category === "All jewelry" || p.category === category) &&
+        (!params.get("max") || p.price <= Number(params.get("max"))) &&
         (!query ||
           (p.name + " " + p.material + " " + p.category)
             .toLowerCase()
@@ -75,7 +76,7 @@ export default function Shop() {
         <p className="results-count">
           {filtered.length} beautiful little{" "}
           {filtered.length === 1 ? "piece" : "pieces"}
-          {(query || collection) && (
+          {(query || collection || params.get("max")) && (
             <button className="text-link" onClick={() => setParams({})}>
               Clear filters
             </button>

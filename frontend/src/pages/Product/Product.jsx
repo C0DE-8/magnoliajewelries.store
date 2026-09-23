@@ -120,12 +120,15 @@ function ProductDetail({ product }) {
                 <FiGift /> A little gift, beautifully wrapped
               </span>
             </div>
-            <details>
+            <p className="product-sku">
+              Style reference: {product.sku} · Demo collection
+            </p>
+            <details open>
               <summary>Details & materials</summary>
               <p>
-                {product.material}. This is a demonstration product; photography
-                is illustrative. Final measurements and specifications will be
-                available when the collection launches.
+                {product.material}. {product.closure}. Photography and
+                specifications are illustrative; confirm final details with
+                Magnolia before payment.
               </p>
             </details>
             <details>
@@ -133,6 +136,30 @@ function ProductDetail({ product }) {
               <p>
                 Keep dry, avoid perfumes and lotions, and gently polish with a
                 soft cloth. Store separately in a soft pouch.
+              </p>
+            </details>
+            <details>
+              <summary>Fit & sizing</summary>
+              <p>{product.fit}</p>
+              <Link className="text-link" to="/information/sizing">
+                Find your fit
+              </Link>
+            </details>
+            <details>
+              <summary>How to style it</summary>
+              <p>{product.styling}</p>
+              <Link className="text-link" to="/journal/the-art-of-layering">
+                Read our style notes
+              </Link>
+            </details>
+            <details>
+              <summary>Delivery, gifting & payment</summary>
+              <p>
+                Choose standard or express delivery at checkout, add optional
+                gift wrapping, and include a personal message. Create an invoice
+                and contact Magnolia to confirm availability, delivery timing,
+                and your preferred payment method. No payments are taken on this
+                website.
               </p>
             </details>
             <button className="share-button" onClick={share}>

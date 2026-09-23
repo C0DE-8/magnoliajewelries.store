@@ -10,7 +10,7 @@ export default function Wishlist() {
   const saved = products.filter((p) => favorites.includes(p.id));
   return (
     <>
-      <SEO title="Your saved pieces" />
+      <SEO title="Your saved pieces" noIndex />
       <div className="page-intro">
         <span className="eyebrow">KEEP THEM CLOSE</span>
         <h1>Your little wish list.</h1>

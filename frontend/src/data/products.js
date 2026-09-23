@@ -1,4 +1,5 @@
-export const products = [
+import { formatMoney } from "./store.js";
+const catalog = [
   {
     id: 1,
     slug: "solstice-gold-hoops",
@@ -103,13 +104,95 @@ export const products = [
       "Easy, expressive, and full of character. An ode to the days when you have nowhere to be but yourself.",
     sizes: ["Small / Medium", "Medium / Large"],
   },
+  {
+    id: 9,
+    slug: "aurora-crystal-pendant",
+    name: "Aurora Crystal Pendant",
+    category: "Necklaces",
+    price: 145,
+    image: "necklace",
+    material: "Crystal & gold vermeil",
+    tag: "NEW",
+    description:
+      "A jewel-toned focal point with a quietly romantic feel. Wear it against a simple neckline and let a little color tell the story.",
+    sizes: ["16 inches", "18 inches", "20 inches"],
+  },
+  {
+    id: 10,
+    slug: "olivia-twist-hoops",
+    name: "Olivia Twist Hoops",
+    category: "Earrings",
+    price: 75,
+    image: "earrings",
+    material: "Gold-plated sterling silver",
+    tag: "NEW",
+    description:
+      "Soft twists catch the light from every angle. A thoughtful finishing touch for a relaxed day or a dressed-up evening.",
+    sizes: ["One size"],
+  },
+  {
+    id: 11,
+    slug: "celeste-halo-ring",
+    name: "Celeste Halo Ring",
+    category: "Rings",
+    price: 155,
+    image: "ring",
+    material: "Crystal & sterling silver",
+    tag: "",
+    description:
+      "A luminous center framed by little points of light. For personal milestones, meaningful moments, and beautiful new beginnings.",
+    sizes: ["UK J", "UK L", "UK N", "UK P", "UK R"],
+  },
+  {
+    id: 12,
+    slug: "amour-crystal-bracelet",
+    name: "Amour Crystal Bracelet",
+    category: "Bracelets",
+    price: 70,
+    image: "bracelet",
+    material: "Crystal & gold-plated brass",
+    tag: "",
+    description:
+      "A delicate line of sparkle to keep close. Lovely worn alone, even lovelier as a reminder of someone special.",
+    sizes: ["Small / Medium", "Medium / Large"],
+  },
 ];
-export const money = (value) =>
-  new Intl.NumberFormat("en-GB", {
-    style: "currency",
-    currency: "GBP",
-    maximumFractionDigits: 0,
-  }).format(value);
+const categoryDetails = {
+  Necklaces: {
+    fit: "Choose a 16, 18, or 20 inch chain. The position of the pendant varies with neck size and neckline.",
+    styling:
+      "Pair a shorter chain with a longer pendant for an effortless layered look.",
+    closure: "Lobster clasp (sample specification)",
+  },
+  Earrings: {
+    fit: "One size. Sold as a pair; check final dimensions and weight before ordering.",
+    styling:
+      "Let the sculptural shape stand alone, or pair with a fine necklace.",
+    closure: "Hinged fastening (sample specification)",
+  },
+  Rings: {
+    fit: "UK letter sizing. A professional finger measurement is the best starting point.",
+    styling:
+      "Wear as a signature piece or combine with fine bands for your own stack.",
+    closure: "Closed band; not adjustable",
+  },
+  Bracelets: {
+    fit: "Small / Medium or Medium / Large. Final wrist measurements are confirmed before a live order.",
+    styling:
+      "Add a little light beside a watch, or wear on its own for a delicate finish.",
+    closure: "Clasp fastening (sample specification)",
+  },
+};
+export const products = catalog.map((product) => ({
+  ...product,
+  sku:
+    "MAG-" +
+    product.category.slice(0, 3).toUpperCase() +
+    "-" +
+    String(product.id).padStart(3, "0"),
+  ...categoryDetails[product.category],
+}));
+export const money = formatMoney;
 export const categories = [
   "All jewelry",
   "Necklaces",

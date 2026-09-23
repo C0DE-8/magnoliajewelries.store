@@ -1,6 +1,7 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import { products } from "../src/data/products.js";
+import { articles } from "../src/data/editorial.js";
 
 const origin = (
   process.env.SITE_URL || "https://magnoliajewelries.store"
@@ -21,6 +22,14 @@ const pages = [
   { path: "", title: "Jewelry for your everyday, and your forever" },
   { path: "shop", title: "The jewelry collection" },
   { path: "about", title: "Our story" },
+  { path: "checkout", title: "Checkout & invoice", private: true },
+  { path: "journal", title: "The Magnolia journal" },
+  ...articles.map((article) => ({
+    path: "journal/" + article.slug,
+    title: article.title,
+    description: article.excerpt,
+    image: "/images/" + article.image + ".jpg",
+  })),
   { path: "wishlist", title: "Your saved pieces", private: true },
   { path: "bag", title: "Your shopping bag", private: true },
   ...["delivery", "care", "sizing", "contact", "privacy", "terms"].map(
@@ -48,7 +57,7 @@ for (const page of pages) {
   const url = origin + "/" + page.path;
   const image = origin + (page.image || "/images/social-cover.jpg");
   let html = template.replace(
-    /<title>.*?<\/title>/,
+    /<title>[\s\S]*?<\/title>/,
     "<title>" + escape(title) + "</title>",
   );
   const metadata = {
@@ -65,7 +74,9 @@ for (const page of pages) {
   for (const [key, value] of Object.entries(metadata)) {
     const attribute = key.startsWith("og:") ? "property" : "name";
     html = html.replace(
-      new RegExp("<meta " + attribute + '="' + key + '" content="[^"]*"\\s*/>'),
+      new RegExp(
+        "<meta\\s+" + attribute + '="' + key + '"\\s+content="[^"]*"\\s*/>',
+      ),
       "<meta " +
         attribute +
         '="' +
